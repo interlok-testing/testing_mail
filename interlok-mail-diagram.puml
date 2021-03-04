@@ -1,0 +1,13 @@
+@startuml
+partition "To Mail" {
+  "Polling Trigger" -right-> "Service Collection" as SC1
+  SC1 -right-> "Mail Producer"
+}
+"Mail Producer" -right-> "Mail"
+partition "Mail To FS" {
+  "Mail" -right-> "Mail Consumer"
+  "Mail Consumer" -right-> "Service Collection" as SC2
+  SC2 -right-> "FS Producer"
+  "FS Producer" -right-> "FS"
+}
+@enduml

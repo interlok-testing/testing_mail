@@ -1,0 +1,25 @@
+{
+  "name" : "mail",
+  "variableSets" : {
+    "default" : { }
+  },
+  "variableXpaths" : {
+    "/adapter/channel-list/channel[unique-id=\"to-mail\"]/workflow-list/standard-workflow[unique-id=\"to-mail\"]/producer/to" : "${toEmail}",
+    "/adapter/channel-list/channel[unique-id=\"to-mail\"]/workflow-list/standard-workflow[unique-id=\"to-mail\"]/producer/from" : "${fromEmail}",
+    "/adapter/channel-list/channel[unique-id=\"to-mail\"]/workflow-list/standard-workflow[unique-id=\"to-mail\"]/producer/smtp-url" : "${smtpUrl}",
+    "/adapter/channel-list/channel[unique-id=\"to-mail\"]/workflow-list/standard-workflow[unique-id=\"to-mail\"]/producer/username" : "${fromEmail}",
+    "/adapter/channel-list/channel[unique-id=\"to-mail\"]/workflow-list/standard-workflow[unique-id=\"to-mail\"]/producer/password" : "${fromPassword}",
+    "/adapter/channel-list/channel[unique-id=\"mail-to-fs\"]/workflow-list/standard-workflow[unique-id=\"mail-to-fs\"]/consumer/mailbox-url" : "${imapUrl}",
+    "/adapter/channel-list/channel[unique-id=\"mail-to-fs\"]/workflow-list/standard-workflow[unique-id=\"mail-to-fs\"]/consumer/username" : "${toEmail}",
+    "/adapter/channel-list/channel[unique-id=\"mail-to-fs\"]/workflow-list/standard-workflow[unique-id=\"mail-to-fs\"]/consumer/password" : "${toPassword}",
+    "/adapter/channel-list/channel[unique-id=\"mail-to-fs\"]/workflow-list/standard-workflow[unique-id=\"mail-to-fs\"]/producer/base-directory-url" : "${fsDir}"
+  },
+  "uidInXincludeCompntListFileName" : false,
+  "xincludeXpaths" : { },
+  "additionalFiles" : {
+    "bootstrap.properties" : "bootstrap.properties",
+    "log4j2.xml" : "log4j2.xml"
+  },
+  "optionalComponentsInUse" : [ "com.adaptris:interlok-mail:4.0-SNAPSHOT" ],
+  "structured" : true
+}

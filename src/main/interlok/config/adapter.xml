@@ -1,0 +1,142 @@
+<adapter>
+  <unique-id>mail</unique-id>
+  <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
+  <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
+  <shared-components>
+    <connections/>
+    <services/>
+  </shared-components>
+  <event-handler class="default-event-handler">
+    <unique-id>DefaultEventHandler</unique-id>
+    <connection class="null-connection">
+      <unique-id>dreamy-mayer</unique-id>
+    </connection>
+    <producer class="null-message-producer">
+      <unique-id>nostalgic-montalcini</unique-id>
+    </producer>
+  </event-handler>
+  <message-error-handler class="null-processing-exception-handler">
+    <unique-id>cranky-goldstine</unique-id>
+  </message-error-handler>
+  <failed-message-retrier class="no-retries">
+    <unique-id>romantic-poincare</unique-id>
+  </failed-message-retrier>
+  <channel-list>
+    <channel>
+      <consume-connection class="null-connection">
+        <unique-id>reverent-spence</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>sharp-spence</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>furious-pare</unique-id>
+            <poller class="fixed-interval-poller">
+              <poll-interval>
+                <unit>SECONDS</unit>
+                <interval>30</interval>
+              </poll-interval>
+            </poller>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>zen-shannon</unique-id>
+            <services>
+              <payload-from-template>
+                <unique-id>elastic-jepsen</unique-id>
+                <metadata-tokens/>
+                <template>This is a test email sent by Interlok.</template>
+              </payload-from-template>
+            </services>
+          </service-collection>
+          <producer class="send-email">
+            <unique-id>mail-producer</unique-id>
+            <smtp-url>${smtpUrl}</smtp-url>
+            <subject>Test email sent by Interlok</subject>
+            <from>${fromEmail}</from>
+            <session-properties>
+              <key-value-pair>
+                <key>mail.smtp.auth</key>
+                <value>true</value>
+              </key-value-pair>
+              <key-value-pair>
+                <key>mail.smtp.starttls.enable</key>
+                <value>true</value>
+              </key-value-pair>
+            </session-properties>
+            <metadata-filter class="remove-all-metadata-filter"/>
+            <password>${fromPassword}</password>
+            <username>${fromEmail}</username>
+            <to>${toEmail}</to>
+            <content-type>text/plain</content-type>
+            <content-encoding>quoted-printable</content-encoding>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>to-mail</unique-id>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>to-mail</unique-id>
+    </channel>
+    <channel>
+      <consume-connection class="null-connection">
+        <unique-id>reverent-lewin</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>sharp-wozniak</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="default-mail-consumer">
+            <unique-id>mail-consumer</unique-id>
+            <poller class="fixed-interval-poller">
+              <poll-interval>
+                <unit>SECONDS</unit>
+                <interval>10</interval>
+              </poll-interval>
+            </poller>
+            <regular-expression-style>Regex</regular-expression-style>
+            <password>${toPassword}</password>
+            <username>${toEmail}</username>
+            <mail-receiver-factory class="javamail-receiver-factory">
+              <session-properties>
+                <key-value-pair>
+                  <key>mail.imap.ssl.enable</key>
+                  <value>true</value>
+                </key-value-pair>
+              </session-properties>
+            </mail-receiver-factory>
+            <header-handler class="mail-headers-as-metadata">
+              <prefix>MailHeader-</prefix>
+            </header-handler>
+            <mailbox-url>${imapUrl}</mailbox-url>
+            <filter-expression>SUBJECT=^Test email sent by Interlok.*$</filter-expression>
+            <part-selector class="mime-select-by-position">
+              <position>0</position>
+            </part-selector>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>reverent-rosalind</unique-id>
+            <services/>
+          </service-collection>
+          <producer class="fs-producer">
+            <unique-id>berserk-swanson</unique-id>
+            <create-dirs>true</create-dirs>
+            <fs-worker class="fs-nio-worker"/>
+            <filename-creator class="formatted-filename-creator">
+              <filename-format>%1$s</filename-format>
+            </filename-creator>
+            <base-directory-url>${fsDir}</base-directory-url>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>mail-to-fs</unique-id>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>mail-to-fs</unique-id>
+    </channel>
+  </channel-list>
+  <message-error-digester class="standard-message-error-digester">
+    <unique-id>ErrorDigest</unique-id>
+    <digest-max-size>100</digest-max-size>
+  </message-error-digester>
+</adapter>
