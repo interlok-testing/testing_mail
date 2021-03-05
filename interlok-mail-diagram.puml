@@ -8,6 +8,6 @@ partition "Mail To FS" {
   "Mail" -right-> "Mail Consumer"
   "Mail Consumer" -right-> "Service Collection" as SC2
   SC2 -right-> "FS Producer"
-  "FS Producer" -right-> "FS"
 }
+"FS Producer" -right-> "FS"
 @enduml
