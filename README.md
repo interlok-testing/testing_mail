@@ -13,7 +13,22 @@ The first workflow has a polling trigger that produces a message every 30 second
 
 The second workflow is checking new message every 30 seconds on the mail box and copy the message on the file system.
 
-![Mail Diagram](/interlok-mail-diagram.png "Mail Diagram")
+```mermaid
+graph LR
+  subgraph To Mail
+    direction LR
+    PT(Polling Trigger) --> SC1(Service Collection)
+    SC1 --> MP(Mail Producer)
+  end
+  MP --> MS[Mail Server]
+  MS --> MC("Mail Consumer")
+  subgraph Mail To FS
+    direction LR
+    MC --> SC2(Service Collection)
+    SC2 --> FP(FS Producer)
+  end
+  FP --> FS(FS)
+```
 
 ## Getting started
 

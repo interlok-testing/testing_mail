@@ -72,7 +72,6 @@
             <content-type>text/plain</content-type>
             <content-encoding>quoted-printable</content-encoding>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>to-mail</unique-id>
         </standard-workflow>
       </workflow-list>
@@ -128,7 +127,6 @@
             </filename-creator>
             <base-directory-url>${fsDir}</base-directory-url>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>mail-to-fs</unique-id>
         </standard-workflow>
       </workflow-list>
