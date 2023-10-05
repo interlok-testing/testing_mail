@@ -1,5 +1,8 @@
 # Mail Testing
 
+[![license](https://img.shields.io/github/license/interlok-testing/testing_mail.svg)](https://github.com/interlok-testing/testing_mail/blob/develop/LICENSE)
+[![Actions Status](https://github.com/interlok-testing/testing_mail/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/interlok-testing/testing_mail/actions/workflows/gradle-build.yml)
+
 Project tests interlok-mail features
 
 ## What it does
