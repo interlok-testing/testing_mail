@@ -56,4 +56,4 @@ imapUrl=imap://imap.${emailHost}:${imapPort}/INBOX
 fsDir=file://localhost/./messages/in
 ```
 
-For simplicity I chose to use Gmail but any mail provider supporting SMTP and IMAP or POP3 can be used.
+For simplicity I chose to use Gmail but any mail provider supporting **SMTP** and **IMAP** or **POP3** can be used.
