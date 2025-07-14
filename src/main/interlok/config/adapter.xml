@@ -36,7 +36,7 @@
             <poller class="fixed-interval-poller">
               <poll-interval>
                 <unit>SECONDS</unit>
-                <interval>30</interval>
+                <interval>${sendFrequencySeconds}</interval>
               </poll-interval>
             </poller>
           </consumer>
@@ -62,7 +62,7 @@
               </key-value-pair>
               <key-value-pair>
                 <key>mail.smtp.starttls.enable</key>
-                <value>true</value>
+                <value>${sslEnabled}</value>
               </key-value-pair>
             </session-properties>
             <metadata-filter class="remove-all-metadata-filter"/>
@@ -91,7 +91,7 @@
             <poller class="fixed-interval-poller">
               <poll-interval>
                 <unit>SECONDS</unit>
-                <interval>10</interval>
+                <interval>${receiveFrequencySeconds}</interval>
               </poll-interval>
             </poller>
             <regular-expression-style>Regex</regular-expression-style>
@@ -100,15 +100,15 @@
             <mail-receiver-factory class="javamail-receiver-factory">
               <session-properties>
                 <key-value-pair>
-                  <key>mail.imap.ssl.enable</key>
-                  <value>true</value>
+                  <key>mail.${mailBoxProtocol}.ssl.enable</key>
+                  <value>${sslEnabled}</value>
                 </key-value-pair>
               </session-properties>
             </mail-receiver-factory>
             <header-handler class="mail-headers-as-metadata">
               <prefix>MailHeader-</prefix>
             </header-handler>
-            <mailbox-url>${imapUrl}</mailbox-url>
+            <mailbox-url>${mailBoxUrl}</mailbox-url>
             <filter-expression>SUBJECT=^Test email sent by Interlok.*$</filter-expression>
             <part-selector class="mime-select-by-position">
               <position>0</position>
