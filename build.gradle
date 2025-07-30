@@ -7,6 +7,7 @@ ext {
   testingCommonGradle = "https://raw.githubusercontent.com/interlok-testing/testing_common/refs/heads/master/common.gradle?timestamp=${new Date().getTime()}"
 //  testingCommonGradle = "../testing_common/common.gradle"
   interlokTestingVersion = "0.1"
+  interlokServiceTesterVersion = "5.0-SNAPSHOT"
   includeWar='true'
 }
 
