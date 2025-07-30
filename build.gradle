@@ -23,7 +23,7 @@ dependencies {
   interlokJavadocs group: "com.adaptris", name: "interlok-mail", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
   
 
-  interlokTestRuntime ("com.adaptris:interlok-service-tester:$interlokVersion") { changing=true }
+  interlokTestRuntime ("com.adaptris:interlok-service-tester:$interlokServiceTesterVersion") { changing=true }
   testImplementation group: "com.adaptris", name: "interlok-testing-common", version: "$interlokTestingVersion"
   testImplementation("net.markwalder:vtestmail-core:1.0.0")
 }
